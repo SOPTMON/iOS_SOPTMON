@@ -11,7 +11,7 @@ import UIKit
 enum FontName: String {
     case suitSemiBold = "SUIT-SemiBold"
     case suitRegular = "SUIT-Regular"
-}
+} 
 
 extension UIFont {
     static func font(_ style: FontName, ofSize size: CGFloat) -> UIFont {
