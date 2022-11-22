@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA6CADB7292CAE6F00A47840 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6CADB6292CAE6F00A47840 /* ListItem.swift */; };
+		EA6CADB9292CAE8400A47840 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6CADB8292CAE8400A47840 /* ListSection.swift */; };
+		EA6CADBB292CAE9200A47840 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6CADBA292CAE9200A47840 /* MockData.swift */; };
 		EA887A5D29248CD100F1E38E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA887A5C29248CD100F1E38E /* AppDelegate.swift */; };
 		EA887A5F29248CD100F1E38E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA887A5E29248CD100F1E38E /* SceneDelegate.swift */; };
 		EA887A6629248CD300F1E38E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA887A6529248CD300F1E38E /* Assets.xcassets */; };
@@ -26,7 +29,7 @@
 		EA887A9F2924946D00F1E38E /* SUIT-Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA887A9D2924946D00F1E38E /* SUIT-Variable.ttf */; };
 		EA887AA1292498EE00F1E38E /* ColorLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA887AA0292498EE00F1E38E /* ColorLiterals.swift */; };
 		EA8F387B2924BFF900517CD4 /* FontLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F387A2924BFF900517CD4 /* FontLiterals.swift */; };
-		EA8F387D2924C0E500517CD4 /* imageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F387C2924C0E500517CD4 /* imageLiterals.swift */; };
+		EA8F387D2924C0E500517CD4 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F387C2924C0E500517CD4 /* ImageLiterals.swift */; };
 		EA8F38802924C4C800517CD4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F387F2924C4C800517CD4 /* TabBarViewController.swift */; };
 		EA8F38872924C6DC00517CD4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F38862924C6DC00517CD4 /* HomeViewController.swift */; };
 		EA8F38892924C71D00517CD4 /* CategoryMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F38882924C71D00517CD4 /* CategoryMainViewController.swift */; };
@@ -34,6 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA6CADB6292CAE6F00A47840 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		EA6CADB8292CAE8400A47840 /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
+		EA6CADBA292CAE9200A47840 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		EA887A5929248CD100F1E38E /* TMON-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TMON-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA887A5C29248CD100F1E38E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA887A5E29248CD100F1E38E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +58,7 @@
 		EA887A9D2924946D00F1E38E /* SUIT-Variable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Variable.ttf"; sourceTree = "<group>"; };
 		EA887AA0292498EE00F1E38E /* ColorLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiterals.swift; sourceTree = "<group>"; };
 		EA8F387A2924BFF900517CD4 /* FontLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiterals.swift; sourceTree = "<group>"; };
-		EA8F387C2924C0E500517CD4 /* imageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageLiterals.swift; sourceTree = "<group>"; };
+		EA8F387C2924C0E500517CD4 /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		EA8F387F2924C4C800517CD4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		EA8F38862924C6DC00517CD4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EA8F38882924C71D00517CD4 /* CategoryMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMainViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +79,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA6CADB5292CAE3600A47840 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
 		EA887A5029248CD100F1E38E = {
 			isa = PBXGroup;
 			children = (
@@ -146,7 +159,7 @@
 			children = (
 				EA887AA0292498EE00F1E38E /* ColorLiterals.swift */,
 				EA8F387A2924BFF900517CD4 /* FontLiterals.swift */,
-				EA8F387C2924C0E500517CD4 /* imageLiterals.swift */,
+				EA8F387C2924C0E500517CD4 /* ImageLiterals.swift */,
 			);
 			path = Literal;
 			sourceTree = "<group>";
@@ -233,7 +246,11 @@
 		EA8F38812924C67800517CD4 /* HomeScene */ = {
 			isa = PBXGroup;
 			children = (
+				EA6CADB5292CAE3600A47840 /* CollectionViewCells */,
 				EA8F38862924C6DC00517CD4 /* HomeViewController.swift */,
+				EA6CADB6292CAE6F00A47840 /* ListItem.swift */,
+				EA6CADB8292CAE8400A47840 /* ListSection.swift */,
+				EA6CADBA292CAE9200A47840 /* MockData.swift */,
 			);
 			path = HomeScene;
 			sourceTree = "<group>";
@@ -356,11 +373,14 @@
 				EA887AA1292498EE00F1E38E /* ColorLiterals.swift in Sources */,
 				EA887A5D29248CD100F1E38E /* AppDelegate.swift in Sources */,
 				EA8F38892924C71D00517CD4 /* CategoryMainViewController.swift in Sources */,
-				EA8F387D2924C0E500517CD4 /* imageLiterals.swift in Sources */,
+				EA6CADB7292CAE6F00A47840 /* ListItem.swift in Sources */,
+				EA8F387D2924C0E500517CD4 /* ImageLiterals.swift in Sources */,
 				EA8F38802924C4C800517CD4 /* TabBarViewController.swift in Sources */,
 				EA887A5F29248CD100F1E38E /* SceneDelegate.swift in Sources */,
 				EA8F38872924C6DC00517CD4 /* HomeViewController.swift in Sources */,
 				EA8F387B2924BFF900517CD4 /* FontLiterals.swift in Sources */,
+				EA6CADBB292CAE9200A47840 /* MockData.swift in Sources */,
+				EA6CADB9292CAE8400A47840 /* ListSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
