@@ -28,4 +28,15 @@ enum ListSection {
         return items.count
     }
     
+    var title: String {
+        switch self {
+        case .productRecomment:
+            return "맞춤상품추천"
+        case .TVONLIVE:
+            return "TVON LIVE"
+        default:
+            return ""
+        }
+    }
+    
 }
