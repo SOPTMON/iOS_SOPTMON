@@ -13,7 +13,15 @@ class TVONLIVECollectionViewCell: UICollectionViewCell {
     static let identifier = "TVONLIVECollectionViewCell"
     
     //MARK: - UIComponents
-    private let imageView = UIImageView()
+    private let imageView = {
+        let imageView = UIImageView()
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.clear.cgColor
+        imageView.layer.cornerRadius = 33
+        imageView.clipsToBounds = true
+        return imageView
+        
+    }()
     
     private let titleLabel = {
         let label = UILabel()
@@ -24,7 +32,6 @@ class TVONLIVECollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.backgroundColor = .red
         addViews()
         layout()
     }
@@ -34,7 +41,7 @@ class TVONLIVECollectionViewCell: UICollectionViewCell {
     }
     
     func setup(_ item: ListItem,_ index: Int) {
-        imageView.image = UIImage(named: item.image)
+        imageView.kf.setImage(with: URL(string: item.image))
         titleLabel.text = item.title
         titleLabel.textColor = index == 0 ? .mainColor : .grayColor2
     }
