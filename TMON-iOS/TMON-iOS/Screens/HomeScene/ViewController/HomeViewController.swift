@@ -11,7 +11,7 @@ import SnapKit
 final class HomeViewController: UIViewController {
 
     //MARK: Data
-    private let sections = MockData.shared.pageData
+    private let shared = MockData.shared
     
     //MARK: - UIComponents
     private let logoImageView = {
@@ -130,6 +130,7 @@ final class HomeViewController: UIViewController {
         addViews()
         layout()
         register()
+        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -167,6 +168,43 @@ final class HomeViewController: UIViewController {
         containerCollectionView.register(IconCollectionViewCell.self, forCellWithReuseIdentifier: IconCollectionViewCell.identifier)
         containerCollectionView.register(ProductRecommendCollectionViewCell.self, forCellWithReuseIdentifier: ProductRecommendCollectionViewCell.identifier)
         containerCollectionView.register(TVONLIVECollectionViewCell.self, forCellWithReuseIdentifier: TVONLIVECollectionViewCell.identifier)
+    }
+    
+    private func fetchData() {
+        HomeViewAPIService.requestProductReccomendLists { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.shared.productRecommend = {
+                    .productRecomment([
+                        .init(title: data[0].itemName, image: data[0].itemImage, cost: String(data[0].itemPrice)),
+                        .init(title: data[1].itemName, image: data[1].itemImage, cost: String(data[1].itemPrice)),
+                        .init(title: data[2].itemName, image: data[2].itemImage, cost: String(data[2].itemPrice)),
+                        .init(title: data[3].itemName, image: data[3].itemImage, cost: String(data[3].itemPrice))
+                    ])
+                }()
+                self?.containerCollectionView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        HomeViewAPIService.requestTVONLists { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.shared.TVONLIVE = {
+                    .TVONLIVE([
+                        .init(title: data[0].liveName, image: data[0].liveImage, cost: ""),
+                        .init(title: data[1].liveName, image: data[1].liveImage, cost: ""),
+                        .init(title: data[2].liveName, image: data[2].liveImage, cost: ""),
+                        .init(title: data[3].liveName, image: data[3].liveImage, cost: ""),
+                        .init(title: data[4].liveName, image: data[4].liveImage, cost: "")
+                    ])
+                }()
+                self?.containerCollectionView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
@@ -256,7 +294,7 @@ extension HomeViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
             guard let self = self else { return nil }
-            let section = self.sections[sectionIndex]
+            let section = self.shared.pageData[sectionIndex]
             switch section {
             case .imagePreview:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
@@ -286,7 +324,7 @@ extension HomeViewController {
                 return section
             case .TVONLIVE:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(84), heightDimension: .absolute(100)), subitems: [item])
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(90), heightDimension: .absolute(100)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
                 section.interGroupSpacing = 5
@@ -302,15 +340,15 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count
+        return shared.pageData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sections[section].count
+        return shared.pageData[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch sections[indexPath.section] {
+        switch shared.pageData[indexPath.section] {
         case .imagePreview(let items):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePreviewCollectionViewCell.identifier, for: indexPath) as! ImagePreviewCollectionViewCell
             cell.setup(items[indexPath.row])
@@ -334,7 +372,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeaderReusableView.identifier, for: indexPath) as! CollectionViewHeaderReusableView
-            header.setup(sections[indexPath.section].title)
+            header.setup(shared.pageData[indexPath.section].title)
             return header
         case UICollectionView.elementKindSectionFooter:
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewFooterReusableView.identifier, for: indexPath) as! CollectionViewFooterReusableView
