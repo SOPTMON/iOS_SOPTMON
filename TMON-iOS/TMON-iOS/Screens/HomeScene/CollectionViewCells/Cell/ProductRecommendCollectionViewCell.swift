@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProductRecommendCollectionViewCell: UICollectionViewCell {
     
@@ -13,7 +14,12 @@ class ProductRecommendCollectionViewCell: UICollectionViewCell {
     static let identifier = "ProductRecommendCollectionViewCell"
     
     //MARK: - UIComponents
-    private let imageView = UIImageView()
+    private let imageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 5
+        imageView.clipsToBounds = true
+        return imageView
+    }()
     
     private let titleLabel = {
         let label = UILabel()
@@ -43,7 +49,8 @@ class ProductRecommendCollectionViewCell: UICollectionViewCell {
     }
     
     func setup(_ item: ListItem) {
-        imageView.image = UIImage(named: item.image)
+        
+        imageView.kf.setImage(with: URL(string: item.image))
         
         let title = item.title
         let length = title.count
@@ -59,7 +66,7 @@ class ProductRecommendCollectionViewCell: UICollectionViewCell {
         attributedString.addAttribute(.foregroundColor, value: UIColor.mainColor, range: (title as NSString).range(of:emphasisText))
         titleLabel.attributedText = attributedString
         
-        costLabel.text = item.cost
+        costLabel.text = item.cost + "원~"
     }
     
 }
