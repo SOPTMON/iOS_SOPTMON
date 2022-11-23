@@ -121,6 +121,12 @@ class ProductsViewController: UIViewController {
     
     // MARK: - Variables
     
+    var productList: [ProductModel] = [
+        ProductModel(productImage: "food_img_macaroon", productName: "[스낵위크]롯데제과 마카롱 /", productDiscount: "60%할인", productPrice: "19,900~"),
+        ProductModel(productImage: "food_img_candy", productName: "[스낵위크] 롯데제과 캔디 묶음 상품 /", productDiscount: "40%할인", productPrice: "7,000원~"),
+        ProductModel(productImage: "food_img_chocolate", productName: "[스낵위크] 롯데제과 수제 초콜릿 /", productDiscount: "40%할인", productPrice: "26,400원~")
+    ]
+    
     
     // MARK: - Constants
     
