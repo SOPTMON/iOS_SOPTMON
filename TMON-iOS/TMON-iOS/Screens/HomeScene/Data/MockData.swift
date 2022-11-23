@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MockData {
+class MockData {
     
     static let shared = MockData()
     
@@ -34,7 +34,7 @@ struct MockData {
         ])
     }()
     
-    private let productRecommend: ListSection = {
+    var productRecommend: ListSection = {
         .productRecomment([
             .init(title: "[컬쳐위크] 뮤지컬 \n메리셸리 / 60% 할인", image: "home_img_musical1", cost: "19,900원~"),
             .init(title: "[컬쳐위크] 뮤지컬 \n사랑의 불시착 / 40% 할인", image: "home_img_musical2", cost: "20,000원~"),
@@ -43,7 +43,7 @@ struct MockData {
         ])
     }()
     
-    private let TVONLIVE: ListSection = {
+    var TVONLIVE: ListSection = {
         .TVONLIVE([
             .init(title: "LIVE ON", image: "Group 8951", cost: ""),
             .init(title: "의성마늘", image: "home_img_liveon2", cost: ""),
