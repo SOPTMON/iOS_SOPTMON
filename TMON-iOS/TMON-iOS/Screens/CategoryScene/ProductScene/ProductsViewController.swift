@@ -104,9 +104,20 @@ class ProductsViewController: UIViewController {
         return scrollView
     }()
     
-    private let bannerView = UIView()
-    
     private let bannerImageView = UIImageView()
+    
+    private let recommendedProductsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "맞춤 상품 추천"
+        label.textColor = .grayColor1
+        label.font = UIFont.font(FontName.suitSemiBold, ofSize: 18)
+        return label
+    }()
+    
+    private let seeMoreRecommendedProductsButton = UIButton()
+    
+    private let seeMoreImageView = UIImageView()
+    
     
     // MARK: - Variables
     
@@ -148,7 +159,7 @@ extension ProductsViewController {
             bottomNavigationView.addSubview($0)
         }
         
-        [bannerImageView].forEach {
+        [bannerImageView, recommendedProductsLabel, seeMoreRecommendedProductsButton, seeMoreImageView].forEach {
             productsScrollView.addSubview($0)
         }
         
@@ -251,6 +262,7 @@ extension ProductsViewController {
         // MARK: - productsScrollView layout
         
         // ScrollView의 마지막 subview에 $0.bottom.equalToSuperview().offset(-45) 주는거 잊지말기!
+        
         productsScrollView.snp.makeConstraints {
             $0.top.equalTo(self.navigationView.snp.bottom)
             $0.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)
@@ -262,6 +274,26 @@ extension ProductsViewController {
             $0.width.equalTo(394)
             $0.height.equalTo(116)
         }
+        
+        recommendedProductsLabel.snp.makeConstraints {
+            $0.top.equalTo(self.bannerImageView.snp.bottom).offset(34)
+            $0.leading.equalToSuperview().offset(16)
+        }
+        
+        seeMoreRecommendedProductsButton.snp.makeConstraints {
+            $0.top.equalTo(self.bannerImageView.snp.bottom).offset(31)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.width.equalTo(22)
+            $0.height.equalTo(22)
+        }
+        
+        seeMoreImageView.snp.makeConstraints {
+            $0.top.equalTo(self.bannerImageView.snp.bottom).offset(31)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.width.equalTo(22)
+            $0.height.equalTo(22)
+        }
+        
     }
     
     
@@ -272,5 +304,6 @@ extension ProductsViewController {
         alarmImageView.image = UIImage(named: "tmon_btn_alarm")
         cartImageView.image = UIImage(named: "tmon_btn_shopping")
         bannerImageView.image = UIImage(named: "food_img_ad")
+        seeMoreImageView.image = UIImage(named: "tmon_btn_more")
     }
 }
