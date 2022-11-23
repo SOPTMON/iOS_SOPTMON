@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "tmonDefaultBar.png",
+      "filename" : "tabBar_tmonDefaultBar.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

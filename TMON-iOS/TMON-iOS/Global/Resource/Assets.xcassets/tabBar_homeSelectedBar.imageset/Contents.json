@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "homeSelectedBar.png",
+      "filename" : "tabBar_homeSelectedBar.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
