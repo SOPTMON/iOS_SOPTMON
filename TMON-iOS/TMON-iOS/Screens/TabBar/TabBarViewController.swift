@@ -22,38 +22,52 @@ class TabBarController: UITabBarController {
     //MARK: - Helpers
     func setUI() {
         tabBar.backgroundColor = .white
+        let tabBarAppearance = UITabBarAppearance()
+        let tabBarItemAppearance = UITabBarItemAppearance()
+
+        tabBarItemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grayColor1, NSAttributedString.Key.font: UIFont(name: "SUIT-Regular", size: 10)!]
+        
+        tabBarItemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.grayColor1, NSAttributedString.Key.font: UIFont(name: "SUIT-Regular", size: 10)!]
+        
+        tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
+
+        tabBar.standardAppearance = tabBarAppearance
     }
     
     func setTabBarViewControllers() {
         
         let homeVC = HomeViewController()
         
-        let homeNVC = templateNavigationController(unselectedImage: ImageLiterals.tabBarHomeDefaultBar,
+        let homeNVC = templateNavigationController(title: "홈화면",
+                                                   unselectedImage: ImageLiterals.tabBarHomeDefaultBar,
                                                    selectedImage: ImageLiterals.tabBarHomeSelected,
                                                    rootViewController: homeVC)
         
         let categoryVC = CategoryMainViewController()
-        let categoryNVC = templateNavigationController(unselectedImage: ImageLiterals.tabBarCategoryDefault,
+        let categoryNVC = templateNavigationController(title: "카테고리",
+                                                unselectedImage: ImageLiterals.tabBarCategoryDefault,
                                                        selectedImage: ImageLiterals.tabBarCategorySelected,
                                                      rootViewController: categoryVC)
         
-        let mineNVC = templateNavigationController(unselectedImage: ImageLiterals.tabBarMineDefault,
+        let mineNVC = templateNavigationController(title: "찜하기",
+                                                    unselectedImage: ImageLiterals.tabBarMineDefault,
                                                            selectedImage: ImageLiterals.tabBarMineDefault,
                                                     rootViewController: UIViewController())
         
-        let myTmonNVC = templateNavigationController(unselectedImage: ImageLiterals.tabBarTmonDefault,
+        let myTmonNVC = templateNavigationController(title: "마이티몬",
+                                                        unselectedImage: ImageLiterals.tabBarTmonDefault,
                                                                 selectedImage: ImageLiterals.tabBarTmonDefault,
                                                    rootViewController: UIViewController())
         
         viewControllers = [homeNVC, categoryNVC, mineNVC, myTmonNVC]
     }
 
-    func templateNavigationController(unselectedImage: UIImage?, selectedImage: UIImage?, rootViewController: UIViewController) -> UINavigationController {
+    func templateNavigationController(title: String, unselectedImage: UIImage?, selectedImage: UIImage?, rootViewController: UIViewController) -> UINavigationController {
         let nav = UINavigationController(rootViewController: rootViewController)
-        nav.tabBarItem.image = unselectedImage?.resize(to: CGSize(width: 43, height: 48)).withRenderingMode(.alwaysOriginal)
-        nav.tabBarItem.selectedImage = selectedImage?.resize(to: CGSize(width: 43, height: 48)).withRenderingMode(.alwaysOriginal)
+        nav.title = title
+        nav.tabBarItem.image = unselectedImage?.resize(to: CGSize(width: 18, height: 23)).withRenderingMode(.alwaysOriginal)
+        nav.tabBarItem.selectedImage = selectedImage?.resize(to: CGSize(width: 18, height: 23)).withRenderingMode(.alwaysOriginal)
         nav.navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: self, action: nil)
-        nav.navigationItem.backBarButtonItem?.tintColor = .black
         return nav
     }
 }
