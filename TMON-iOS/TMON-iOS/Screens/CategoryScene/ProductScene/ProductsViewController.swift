@@ -13,7 +13,7 @@ import SwiftyColor
 
 // MARK: - ProductsViewController
 
-class ProductsViewController: UIViewController {
+class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegate, UICollectionViewDelegate {
     
     // MARK: - UI Components
     
@@ -348,4 +348,36 @@ extension ProductsViewController {
     private func register() {
         recommendedProductsCollectionView.register(RecommendedProductsCollectionViewCell.self, forCellWithReuseIdentifier: RecommendedProductsCollectionViewCell.identifier)
     }
+}
+
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension ProductsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 134, height: 205)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return recommendedProductInterItemSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return recommendedProductInset
+    }
+}
+
+
+// MARK: - UICollectionViewDataSource
+
+extension ProductsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
+    
 }
