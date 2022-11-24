@@ -29,6 +29,7 @@ class RecommendedProductsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .grayColor1
         label.font = UIFont.font(FontName.suitRegular, ofSize: 12)
+        label.numberOfLines = 2
         return label
     }()
     
@@ -59,10 +60,36 @@ extension RecommendedProductsCollectionViewCell {
     private func layout() {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
+        
+        // MARK: - addSubview
+        
         [productImageContainerView, productNameLabel, productPriceLabel].forEach {
             contentView.addSubview($0)
         }
         productImageContainerView.addSubview(productImageView)
+        
+        // MARK: - AutoLayout
+        
+        productImageContainerView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(134)
+        }
+        
+        productImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        productNameLabel.snp.makeConstraints {
+            $0.top.equalTo(self.productImageContainerView).offset(10)
+            $0.leading.equalToSuperview()
+            $0.width.equalTo(125)
+        }
+        
+        productPriceLabel.snp.makeConstraints {
+            $0.top.equalTo(self.productNameLabel).offset(10)
+            $0.leading.equalToSuperview()
+            $0.width.equalTo(125)
+        }
         
     }
     
