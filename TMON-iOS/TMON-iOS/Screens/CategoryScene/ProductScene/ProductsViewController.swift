@@ -106,6 +106,8 @@ class ProductsViewController: UIViewController {
     
     private let bannerImageView = UIImageView()
     
+    private let recommendedProductsHeaderView = UIView()
+    
     private let recommendedProductsLabel: UILabel = {
         let label = UILabel()
         label.text = "맞춤 상품 추천"
@@ -178,8 +180,12 @@ extension ProductsViewController {
             bottomNavigationView.addSubview($0)
         }
         
-        [bannerImageView, recommendedProductsLabel, seeMoreRecommendedProductsButton, seeMoreImageView].forEach {
+        [bannerImageView, recommendedProductsHeaderView].forEach {
             productsScrollView.addSubview($0)
+        }
+        
+        [recommendedProductsLabel, seeMoreRecommendedProductsButton, seeMoreImageView].forEach {
+            recommendedProductsHeaderView.addSubview($0)
         }
         
         // MARK: - NavigationView layout
@@ -294,14 +300,22 @@ extension ProductsViewController {
             $0.height.equalTo(116)
         }
         
+        // MARK: - RecommendedProductsView layout
+        
+        recommendedProductsHeaderView.snp.makeConstraints {
+            $0.top.equalTo(self.bannerImageView.snp.bottom).offset(31)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(22)
+        }
+        
         recommendedProductsLabel.snp.makeConstraints {
-            $0.top.equalTo(self.bannerImageView.snp.bottom).offset(34)
             $0.leading.equalToSuperview().offset(16)
+            $0.centerY.equalToSuperview()
         }
         
         seeMoreRecommendedProductsButton.snp.makeConstraints {
-            $0.top.equalTo(self.bannerImageView.snp.bottom).offset(31)
             $0.trailing.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
             $0.width.equalTo(22)
             $0.height.equalTo(22)
         }
