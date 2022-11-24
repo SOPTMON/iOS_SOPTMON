@@ -140,6 +140,8 @@ class ProductsViewController: UIViewController {
     
     // MARK: - Constants
     
+    final let recommendedProductCellHeight: CGFloat = 205
+    final let recommendedProductInterItemSpacing: CGFloat = 9
     
     
     // MARK: - Life Cycles
