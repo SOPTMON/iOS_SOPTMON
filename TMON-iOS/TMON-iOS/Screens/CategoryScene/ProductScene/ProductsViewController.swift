@@ -152,6 +152,7 @@ class ProductsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configImageView()
+        register()
         layout()
     }
 }
@@ -340,5 +341,9 @@ extension ProductsViewController {
         cartImageView.image = UIImage(named: "tmon_btn_shopping")
         bannerImageView.image = UIImage(named: "food_img_ad")
         seeMoreImageView.image = UIImage(named: "tmon_btn_more")
+    }
+    
+    private func register() {
+        recommendedProductsCollectionView.register(RecommendedProductsCollectionViewCell.self, forCellWithReuseIdentifier: RecommendedProductsCollectionViewCell.identifier)
     }
 }
