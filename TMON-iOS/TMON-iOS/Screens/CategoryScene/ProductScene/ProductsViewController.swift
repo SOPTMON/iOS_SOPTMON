@@ -372,12 +372,14 @@ extension ProductsViewController: UICollectionViewDelegateFlowLayout {
 
 extension ProductsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return recommendedProductsList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        guard let recommendedProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendedProductsCollectionViewCell", for: indexPath)
+                as? RecommendedProductsCollectionViewCell else { return UICollectionViewCell() }
+        recommendedProductCell.dataBind(model: recommendedProductsList[indexPath.item])
+        return recommendedProductCell
     }
-    
     
 }
