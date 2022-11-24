@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct recommendedProductModel {
+struct RecommendedProductModel {
     let productImage: String
     let productName: String
     let productPrice: String
