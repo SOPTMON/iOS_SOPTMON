@@ -70,6 +70,8 @@ extension RecommendedProductsCollectionViewCell {
     // MARK: - General Helpers
     
     func dataBind(model: RecommendedProductModel) {
-        
+        productNameLabel.text = model.productName
+        productPriceLabel.text = model.productPrice
+        productImageView.image = UIImage(named: model.productImage)
     }
 }
