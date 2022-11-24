@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C5064872927930800A575CE /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5064862927930800A575CE /* ProductsViewController.swift */; };
 		4C506489292795B300A575CE /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C506488292795B300A575CE /* ProductDetailViewController.swift */; };
-		4CB29AF3292DB8660057F0C4 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB29AF2292DB8660057F0C4 /* ProductModel.swift */; };
+		4CB29AF3292DB8660057F0C4 /* recommendedProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB29AF2292DB8660057F0C4 /* recommendedProductModel.swift */; };
 		EA887A5D29248CD100F1E38E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA887A5C29248CD100F1E38E /* AppDelegate.swift */; };
 		EA887A5F29248CD100F1E38E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA887A5E29248CD100F1E38E /* SceneDelegate.swift */; };
 		EA887A6629248CD300F1E38E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA887A6529248CD300F1E38E /* Assets.xcassets */; };
@@ -39,7 +39,7 @@
 /* Begin PBXFileReference section */
 		4C5064862927930800A575CE /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		4C506488292795B300A575CE /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
-		4CB29AF2292DB8660057F0C4 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		4CB29AF2292DB8660057F0C4 /* recommendedProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recommendedProductModel.swift; sourceTree = "<group>"; };
 		EA887A5929248CD100F1E38E /* TMON-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TMON-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA887A5C29248CD100F1E38E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA887A5E29248CD100F1E38E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		EA887A80292490E100F1E38E /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				4CB29AF2292DB8660057F0C4 /* ProductModel.swift */,
+				4CB29AF2292DB8660057F0C4 /* recommendedProductModel.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -369,7 +369,7 @@
 				EA8F38802924C4C800517CD4 /* TabBarViewController.swift in Sources */,
 				EA887A5F29248CD100F1E38E /* SceneDelegate.swift in Sources */,
 				4C5064872927930800A575CE /* ProductsViewController.swift in Sources */,
-				4CB29AF3292DB8660057F0C4 /* ProductModel.swift in Sources */,
+				4CB29AF3292DB8660057F0C4 /* recommendedProductModel.swift in Sources */,
 				4C506489292795B300A575CE /* ProductDetailViewController.swift in Sources */,
 				EA8F38872924C6DC00517CD4 /* HomeViewController.swift in Sources */,
 				EA8F387B2924BFF900517CD4 /* FontLiterals.swift in Sources */,

@@ -131,14 +131,15 @@ class ProductsViewController: UIViewController {
     
     // MARK: - Variables
     
-    var productList: [ProductModel] = [
-        ProductModel(productImage: "food_img_macaroon", productName: "[스낵위크]롯데제과 마카롱 / 60%할인",  productPrice: "19,900~"),
-        ProductModel(productImage: "food_img_candy", productName: "[스낵위크] 롯데제과 캔디 묶음 상품 / 40%할인", productPrice: "7,000원~"),
-        ProductModel(productImage: "food_img_chocolate", productName: "[스낵위크] 롯데제과 수제 초콜릿 / 40%할인", productPrice: "26,400원~")
+    var recommendedProductList: [recommendedProductModel] = [
+        recommendedProductModel(productImage: "food_img_macaroon", productName: "[스낵위크]롯데제과 마카롱 / 60%할인",  productPrice: "19,900~"),
+        recommendedProductModel(productImage: "food_img_candy", productName: "[스낵위크] 롯데제과 캔디 묶음 상품 / 40%할인", productPrice: "7,000원~"),
+        recommendedProductModel(productImage: "food_img_chocolate", productName: "[스낵위크] 롯데제과 수제 초콜릿 / 40%할인", productPrice: "26,400원~")
     ]
     
     
     // MARK: - Constants
+    
     
     
     // MARK: - Life Cycles
