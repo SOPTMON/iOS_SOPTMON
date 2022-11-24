@@ -118,6 +118,16 @@ class ProductsViewController: UIViewController {
     
     private let seeMoreImageView = UIImageView()
     
+    private lazy var recommendedProductsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }()
     
     // MARK: - Variables
     
