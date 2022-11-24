@@ -144,6 +144,7 @@ class ProductsViewController: UIViewController {
     
     final let recommendedProductCellHeight: CGFloat = 205
     final let recommendedProductInterItemSpacing: CGFloat = 9
+    final let recommendedProductInset: UIEdgeInsets = UIEdgeInsets(top: 19, left: 16, bottom: 26, right: 16)
     
     
     // MARK: - Life Cycles
