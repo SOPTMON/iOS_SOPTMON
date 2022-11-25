@@ -28,9 +28,7 @@ class ProductsViewController: UIViewController {
     private let topNavigationView = UIView()
     
     private let backButton = UIButton()
-    
     private let backImageContainer = UIView()
-    
     private let backImageView = UIImageView()
     
     private let foodLabel: UILabel = {
@@ -42,13 +40,11 @@ class ProductsViewController: UIViewController {
     }()
     
     private let alarmButton = UIButton()
-    
     private let alarmImageContainer = UIView()
-    
     private let alarmImageView = UIImageView()
     
     private let cartButton = UIButton()
-    
+    private let cartImageContainer = UIView()
     private let cartImageView = UIImageView()
     
     private let bottomNavigationView = UIView()
@@ -60,7 +56,6 @@ class ProductsViewController: UIViewController {
         label.font = UIFont.font(FontName.suitSemiBold, ofSize: 14)
         return label
     }()
-    
     private let entireFoodLabelUnderlineView: UIView = {
         let view = UIView()
         view.backgroundColor = .mainColor
@@ -109,7 +104,6 @@ class ProductsViewController: UIViewController {
     }()
     
     private let bannerImageContainer = UIView()
-    
     private let bannerImageView = UIImageView()
     
     private let recommendedProductsHeaderView = UIView()
@@ -190,12 +184,13 @@ extension ProductsViewController {
             navigationView.addSubview($0)
         }
         
-        [backButton, backImageContainer, foodLabel, alarmButton, alarmImageContainer, cartButton, cartImageView].forEach {
+        [backButton, backImageContainer, foodLabel, alarmButton, alarmImageContainer, cartButton, cartImageContainer].forEach {
             topNavigationView.addSubview($0)
         }
         
         backImageContainer.addSubview(backImageView)
         alarmImageContainer.addSubview(alarmImageView)
+        cartImageContainer.addSubview(cartImageView)
         
         [entireFoodLabel, entireFoodLabelUnderlineView, freshFoodLabel, processedFoodLabel, healthAndDietFoodLabel, coffeeAndDrinksFoodLabel].forEach {
             bottomNavigationView.addSubview($0)
@@ -271,11 +266,15 @@ extension ProductsViewController {
             $0.height.equalTo(28)
         }
         
-        cartImageView.snp.makeConstraints {
+        cartImageContainer.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
             $0.trailing.equalToSuperview().inset(16)
             $0.width.equalTo(28)
             $0.height.equalTo(28)
+        }
+        
+        cartImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         bottomNavigationView.snp.makeConstraints {
