@@ -13,7 +13,7 @@ import SwiftyColor
 
 // MARK: - ProductsViewController
 
-class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegate, UICollectionViewDelegate {
+class ProductsViewController: UIViewController {
     
     // MARK: - UI Components
     
@@ -133,6 +133,8 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         return collectionView
     }()
     
+    private let borderline 
+    
     // MARK: - Variables
     
     var recommendedProductsList: [RecommendedProductModel] = [
@@ -185,7 +187,7 @@ extension ProductsViewController {
             bottomNavigationView.addSubview($0)
         }
         
-        [bannerImageView, recommendedProductsHeaderView].forEach {
+        [bannerImageView, recommendedProductsHeaderView, recommendedProductsCollectionView].forEach {
             productsScrollView.addSubview($0)
         }
         
@@ -332,6 +334,12 @@ extension ProductsViewController {
             $0.height.equalTo(22)
         }
         
+        recommendedProductsCollectionView.snp.makeConstraints {
+            $0.top.equalTo(self.recommendedProductsHeaderView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(250)
+        }
+        
     }
     
     
@@ -348,6 +356,7 @@ extension ProductsViewController {
     private func register() {
         recommendedProductsCollectionView.register(RecommendedProductsCollectionViewCell.self, forCellWithReuseIdentifier: RecommendedProductsCollectionViewCell.identifier)
     }
+
 }
 
 

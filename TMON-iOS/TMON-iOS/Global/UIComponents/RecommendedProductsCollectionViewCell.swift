@@ -80,13 +80,13 @@ extension RecommendedProductsCollectionViewCell {
         }
         
         productNameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.productImageContainerView).offset(10)
+            $0.top.equalTo(self.productImageContainerView.snp.bottom).offset(10)
             $0.leading.equalToSuperview()
             $0.width.equalTo(125)
         }
         
         productPriceLabel.snp.makeConstraints {
-            $0.top.equalTo(self.productNameLabel).offset(10)
+            $0.top.equalTo(self.productNameLabel.snp.bottom).offset(10)
             $0.leading.equalToSuperview()
             $0.width.equalTo(125)
         }
