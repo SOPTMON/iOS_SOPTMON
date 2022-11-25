@@ -133,7 +133,12 @@ class ProductsViewController: UIViewController {
         return collectionView
     }()
     
-    private let borderline 
+    private let borderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .grayColor4
+        return view
+    }()
+    
     
     // MARK: - Variables
     
@@ -187,7 +192,7 @@ extension ProductsViewController {
             bottomNavigationView.addSubview($0)
         }
         
-        [bannerImageView, recommendedProductsHeaderView, recommendedProductsCollectionView].forEach {
+        [bannerImageView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView].forEach {
             productsScrollView.addSubview($0)
         }
         
@@ -338,6 +343,12 @@ extension ProductsViewController {
             $0.top.equalTo(self.recommendedProductsHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(250)
+        }
+        
+        borderView.snp.makeConstraints {
+            $0.top.equalTo(self.recommendedProductsCollectionView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(8)
         }
         
     }
