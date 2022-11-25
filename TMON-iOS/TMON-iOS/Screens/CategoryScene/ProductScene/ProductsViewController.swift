@@ -29,6 +29,8 @@ class ProductsViewController: UIViewController {
     
     private let backButton = UIButton()
     
+    private let backImageContainer = UIView()
+    
     private let backImageView = UIImageView()
     
     private let foodLabel: UILabel = {
@@ -186,9 +188,11 @@ extension ProductsViewController {
             navigationView.addSubview($0)
         }
         
-        [backButton, backImageView, foodLabel, alarmButton, alarmImageView, cartButton, cartImageView].forEach {
+        [backButton, backImageContainer, foodLabel, alarmButton, alarmImageView, cartButton, cartImageView].forEach {
             topNavigationView.addSubview($0)
         }
+        
+        backImageContainer.addSubview(backImageView)
         
         [entireFoodLabel, entireFoodLabelUnderlineView, freshFoodLabel, processedFoodLabel, healthAndDietFoodLabel, coffeeAndDrinksFoodLabel].forEach {
             bottomNavigationView.addSubview($0)
@@ -223,11 +227,15 @@ extension ProductsViewController {
             $0.height.equalTo(36)
         }
         
-        backImageView.snp.makeConstraints {
+        backImageContainer.snp.makeConstraints {
             $0.top.equalToSuperview().offset(4)
             $0.leading.equalToSuperview().offset(16)
             $0.width.equalTo(38)
             $0.height.equalTo(36)
+        }
+        
+        backImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         foodLabel.snp.makeConstraints {
