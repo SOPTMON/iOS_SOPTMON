@@ -28,7 +28,7 @@ class ProductsViewController: UIViewController {
     private let topNavigationView = UIView()
     
     private let backButton = UIButton()
-    private let backImageContainer = UIView()
+    private let backImageContainerView = UIView()
     private let backImageView = UIImageView()
     
     private let foodLabel: UILabel = {
@@ -40,11 +40,11 @@ class ProductsViewController: UIViewController {
     }()
     
     private let alarmButton = UIButton()
-    private let alarmImageContainer = UIView()
+    private let alarmImageContainerView = UIView()
     private let alarmImageView = UIImageView()
     
     private let cartButton = UIButton()
-    private let cartImageContainer = UIView()
+    private let cartImageContainerView = UIView()
     private let cartImageView = UIImageView()
     
     private let bottomNavigationView = UIView()
@@ -103,7 +103,7 @@ class ProductsViewController: UIViewController {
         return scrollView
     }()
     
-    private let bannerImageContainer = UIView()
+    private let bannerImageContainerView = UIView()
     private let bannerImageView = UIImageView()
     
     // MARK: - recommendedProductsView
@@ -119,6 +119,7 @@ class ProductsViewController: UIViewController {
     }()
     
     private let seeMoreRecommendedProductsButton = UIButton()
+    private let seeMoreRecommendedProductsImageContainerView = UIView()
     private let seeMoreRecommendedProductsImageView = UIImageView()
     
     private lazy var recommendedProductsCollectionView: UICollectionView = {
@@ -153,7 +154,9 @@ class ProductsViewController: UIViewController {
     }()
     
     private let seeMoreBestProductsButton = UIButton()
+    private let seeMoreBestProductsImageContainerView = UIView()
     private let seeMoreBestProductsImageView = UIImageView()
+    
     
     // MARK: - Variables
     
@@ -186,7 +189,6 @@ class ProductsViewController: UIViewController {
 
 extension ProductsViewController {
     
-    
     // MARK: - Layout Helpers
     
     private func layout() {
@@ -199,27 +201,35 @@ extension ProductsViewController {
             navigationView.addSubview($0)
         }
         
-        [backButton, backImageContainer, foodLabel, alarmButton, alarmImageContainer, cartButton, cartImageContainer].forEach {
+        [backButton, backImageContainerView, foodLabel, alarmButton, alarmImageContainerView, cartButton, cartImageContainerView].forEach {
             topNavigationView.addSubview($0)
         }
         
-        backImageContainer.addSubview(backImageView)
-        alarmImageContainer.addSubview(alarmImageView)
-        cartImageContainer.addSubview(cartImageView)
+        backImageContainerView.addSubview(backImageView)
+        alarmImageContainerView.addSubview(alarmImageView)
+        cartImageContainerView.addSubview(cartImageView)
         
         [entireFoodLabel, entireFoodLabelUnderlineView, freshFoodLabel, processedFoodLabel, healthAndDietFoodLabel, coffeeAndDrinksFoodLabel].forEach {
             bottomNavigationView.addSubview($0)
         }
         
-        [bannerImageContainer, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView].forEach {
+        [bannerImageContainerView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView].forEach {
             productsScrollView.addSubview($0)
         }
         
-        bannerImageContainer.addSubview(bannerImageView)
+        bannerImageContainerView.addSubview(bannerImageView)
         
-        [recommendedProductsLabel, seeMoreRecommendedProductsButton, seeMoreImageView].forEach {
+        [recommendedProductsLabel, seeMoreRecommendedProductsButton, seeMoreRecommendedProductsImageContainerView].forEach {
             recommendedProductsHeaderView.addSubview($0)
         }
+        
+        seeMoreRecommendedProductsImageContainerView.addSubview(seeMoreRecommendedProductsImageView)
+        
+        [bestProductsLabel, seeMoreBestProductsButton, seeMoreBestProductsImageView].forEach {
+            bestProductsHeaderView.addSubview($0)
+        }
+        
+        seeMoreBestProductsImageContainerView.addSubview(seeMoreBestProductsImageView)
         
         // MARK: - NavigationView layout
         
@@ -240,7 +250,7 @@ extension ProductsViewController {
             $0.height.equalTo(36)
         }
         
-        backImageContainer.snp.makeConstraints {
+        backImageContainerView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(4)
             $0.leading.equalToSuperview().offset(16)
             $0.width.equalTo(38)
@@ -263,7 +273,7 @@ extension ProductsViewController {
             $0.height.equalTo(28)
         }
         
-        alarmImageContainer.snp.makeConstraints {
+        alarmImageContainerView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
             $0.trailing.equalTo(self.cartButton.snp.leading)
             $0.width.equalTo(28)
@@ -281,7 +291,7 @@ extension ProductsViewController {
             $0.height.equalTo(28)
         }
         
-        cartImageContainer.snp.makeConstraints {
+        cartImageContainerView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
             $0.trailing.equalToSuperview().inset(16)
             $0.width.equalTo(28)
@@ -338,7 +348,7 @@ extension ProductsViewController {
             $0.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
-        bannerImageContainer.snp.makeConstraints {
+        bannerImageContainerView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             // width 안줘도 되어야 하는데... 왜 안되지?
             $0.width.equalTo(394)
@@ -369,7 +379,7 @@ extension ProductsViewController {
             $0.height.equalTo(22)
         }
         
-        seeMoreImageView.snp.makeConstraints {
+        seeMoreRecommendedProductsImageView.snp.makeConstraints {
             $0.top.equalTo(self.bannerImageView.snp.bottom).offset(31)
             $0.trailing.equalToSuperview().inset(16)
             $0.width.equalTo(22)
@@ -402,7 +412,7 @@ extension ProductsViewController {
         alarmImageView.image = UIImage(named: "tmon_btn_alarm")
         cartImageView.image = UIImage(named: "tmon_btn_shopping")
         bannerImageView.image = UIImage(named: "food_img_ad")
-        seeMoreImageView.image = UIImage(named: "tmon_btn_more")
+        seeMoreRecommendedProductsImageView.image = UIImage(named: "tmon_btn_more")
     }
     
     private func register() {
