@@ -106,6 +106,8 @@ class ProductsViewController: UIViewController {
     private let bannerImageContainer = UIView()
     private let bannerImageView = UIImageView()
     
+    // MARK: - recommendedProductsView
+    
     private let recommendedProductsHeaderView = UIView()
     
     private let recommendedProductsLabel: UILabel = {
@@ -117,8 +119,7 @@ class ProductsViewController: UIViewController {
     }()
     
     private let seeMoreRecommendedProductsButton = UIButton()
-    
-    private let seeMoreImageView = UIImageView()
+    private let seeMoreRecommendedProductsImageView = UIImageView()
     
     private lazy var recommendedProductsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -139,6 +140,20 @@ class ProductsViewController: UIViewController {
         return view
     }()
     
+    // MARK: - bestProductsView
+    
+    private let bestProductsHeaderView = UIView()
+    
+    private let bestProductsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "베스트 상품"
+        label.textColor = .grayColor1
+        label.font = UIFont.font(FontName.suitSemiBold, ofSize: 18)
+        return label
+    }()
+    
+    private let seeMoreBestProductsButton = UIButton()
+    private let seeMoreBestProductsImageView = UIImageView()
     
     // MARK: - Variables
     
