@@ -175,7 +175,7 @@ class ProductsViewController: UIViewController {
     // MARK: - Variables
     
     var recommendedProductsList: [RecommendedProductModel] = [
-        RecommendedProductModel(productImage: "food_img_macaroon", productName: "[스낵위크]롯데제과 마카롱 / 60%할인",  productPrice: "19,900~"),
+        RecommendedProductModel(productImage: "food_img_macaroon", productName: "[스낵위크]롯데제과 마카롱 / 60%할인",  productPrice: "19,900원~"),
         RecommendedProductModel(productImage: "food_img_candy", productName: "[스낵위크] 롯데제과 캔디 묶음 상품 / 40%할인", productPrice: "7,000원~"),
         RecommendedProductModel(productImage: "food_img_chocolate", productName: "[스낵위크] 롯데제과 수제 초콜릿 / 40%할인", productPrice: "26,400원~")
     ]
@@ -193,6 +193,11 @@ class ProductsViewController: UIViewController {
     final let recommendedProductCellHeight: CGFloat = 205
     final let recommendedProductInterItemSpacing: CGFloat = 9
     final let recommendedProductInset: UIEdgeInsets = UIEdgeInsets(top: 19, left: 16, bottom: 26, right: 16)
+    
+    final let bestProductCellHeight: CGFloat = 258
+    final let bestProductLineSpacing: CGFloat = 20
+    final let bestProductInterItemSpacing: CGFloat = 10
+    final let bestProductInset: UIEdgeInsets = UIEdgeInsets(top: 15, left: 16, bottom: 16, right: 16)
     
     
     // MARK: - Life Cycles
@@ -414,7 +419,7 @@ extension ProductsViewController {
         recommendedProductsCollectionView.snp.makeConstraints {
             $0.top.equalTo(self.recommendedProductsHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(250)
+            $0.height.equalTo(recommendedProductCellHeight + recommendedProductInset.top + recommendedProductInset.bottom)
         }
         
         borderView.snp.makeConstraints {
