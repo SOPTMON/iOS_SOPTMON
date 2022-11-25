@@ -484,6 +484,7 @@ extension ProductsViewController {
     
     private func register() {
         recommendedProductsCollectionView.register(RecommendedProductsCollectionViewCell.self, forCellWithReuseIdentifier: RecommendedProductsCollectionViewCell.identifier)
+        bestProductsCollectionView.register(BestProductsCollectionViewCell.self, forCellWithReuseIdentifier: BestProductsCollectionViewCell.identifier)
     }
 
 }
