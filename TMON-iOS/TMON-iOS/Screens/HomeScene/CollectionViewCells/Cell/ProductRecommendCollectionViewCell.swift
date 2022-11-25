@@ -54,12 +54,20 @@ class ProductRecommendCollectionViewCell: UICollectionViewCell {
         
         let title = item.title
         let length = title.count
+        
         let textArray = title.map{ String($0) }
         
         var emphasisText = ""
         
-        for i in length-6 ..< length {
-            emphasisText += textArray[i]
+        var checkPoint = false
+        for i in 0 ..< length {
+            if checkPoint == true {
+                emphasisText += textArray[i]
+            }
+            
+            if textArray[i] == "/" {
+                checkPoint = true
+            }
         }
         
         let attributedString = NSMutableAttributedString(string: title)
@@ -88,7 +96,8 @@ extension ProductRecommendCollectionViewCell {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(11)
-            $0.leading.trailing.equalTo(imageView)
+            $0.leading.equalTo(imageView)
+            $0.trailing.equalToSuperview()
             $0.height.equalTo(30)
         }
         

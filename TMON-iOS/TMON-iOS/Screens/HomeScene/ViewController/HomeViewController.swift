@@ -176,10 +176,18 @@ final class HomeViewController: UIViewController {
             case .success(let data):
                 self?.shared.productRecommend = {
                     .productRecomment([
-                        .init(title: data[0].itemName, image: data[0].itemImage, cost: String(data[0].itemPrice)),
-                        .init(title: data[1].itemName, image: data[1].itemImage, cost: String(data[1].itemPrice)),
-                        .init(title: data[2].itemName, image: data[2].itemImage, cost: String(data[2].itemPrice)),
-                        .init(title: data[3].itemName, image: data[3].itemImage, cost: String(data[3].itemPrice))
+                        .init(title: data[0].discountRate != 0 ? data[0].itemName + " / " + String(data[0].discountRate) + "%할인" : data[0].itemName,
+                              image: data[0].itemImage,
+                              cost: String(data[0].itemPrice)),
+                        .init(title: data[1].discountRate != 0 ? data[1].itemName + " / " + String(data[1].discountRate) + "%할인" : data[0].itemName,
+                              image: data[1].itemImage,
+                              cost: String(data[1].itemPrice)),
+                        .init(title: data[2].discountRate != 0 ? data[2].itemName + " / " + String(data[2].discountRate) + "%할인" : data[0].itemName,
+                              image: data[2].itemImage,
+                              cost: String(data[2].itemPrice)),
+                        .init(title: data[3].discountRate != 0 ? data[3].itemName + " / " + String(data[3].discountRate) + "%할인" : data[0].itemName,
+                              image: data[3].itemImage,
+                              cost: String(data[3].itemPrice))
                     ])
                 }()
                 self?.containerCollectionView.reloadData()
@@ -324,7 +332,7 @@ extension HomeViewController {
                 return section
             case .TVONLIVE:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(90), heightDimension: .absolute(100)), subitems: [item])
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(120), heightDimension: .absolute(100)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
                 section.interGroupSpacing = 5
