@@ -239,7 +239,7 @@ extension ProductsViewController {
             bottomNavigationView.addSubview($0)
         }
         
-        [bannerImageContainerView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView, bestProductsHeaderView].forEach {
+        [bannerImageContainerView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView, bestProductsHeaderView, bestProductsCollectionView].forEach {
             productsScrollView.addSubview($0)
         }
         
@@ -256,6 +256,7 @@ extension ProductsViewController {
         }
         
         seeMoreBestProductsImageContainerView.addSubview(seeMoreBestProductsImageView)
+
         
         // MARK: - NavigationView layout
         
@@ -459,6 +460,11 @@ extension ProductsViewController {
             $0.edges.equalToSuperview()
         }
         
+        bestProductsCollectionView.snp.makeConstraints {
+            $0.top.equalTo(self.bestProductsHeaderView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(bestProductCellHeight + bestProductInset.top + bestProductInset.bottom)
+        }
     }
     
     
