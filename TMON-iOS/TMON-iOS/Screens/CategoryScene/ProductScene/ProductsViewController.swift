@@ -219,6 +219,9 @@ extension ProductsViewController {
     
     private func layout() {
         view.backgroundColor = .white
+        
+        // MARK: - addSubview
+        
         [navigationView, productsScrollView].forEach {
             view.addSubview($0)
         }
