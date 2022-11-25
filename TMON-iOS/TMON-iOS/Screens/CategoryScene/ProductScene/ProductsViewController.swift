@@ -118,9 +118,9 @@ class ProductsViewController: UIViewController {
         return label
     }()
     
-    private let seeMoreRecommendedProductsButton = UIButton()
-    private let seeMoreRecommendedProductsImageContainerView = UIView()
-    private let seeMoreRecommendedProductsImageView = UIImageView()
+    private let goToRecommendedProductsPageButton = UIButton()
+    private let goToRecommendedProductsPageImageContainerView = UIView()
+    private let goToRecommendedProductsPageImageView = UIImageView()
     
     private lazy var recommendedProductsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -153,9 +153,9 @@ class ProductsViewController: UIViewController {
         return label
     }()
     
-    private let seeMoreBestProductsButton = UIButton()
-    private let seeMoreBestProductsImageContainerView = UIView()
-    private let seeMoreBestProductsImageView = UIImageView()
+    private let goToBestProductsPageButton = UIButton()
+    private let goToBestProductsPageImageContainerView = UIView()
+    private let goToBestProductsPageImageView = UIImageView()
     
     private lazy var bestProductsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -170,6 +170,8 @@ class ProductsViewController: UIViewController {
         collectionView.dataSource = self
         return collectionView
     }()
+    
+    private let temporaryFooter = UIView()
     
     
     // MARK: - Variables
@@ -191,7 +193,7 @@ class ProductsViewController: UIViewController {
     // MARK: - Constants
     
     final let recommendedProductCellHeight: CGFloat = 205
-    final let recommendedProductInterItemSpacing: CGFloat = 9
+    final let recommendedProductLineSpacing: CGFloat = 9
     final let recommendedProductInset: UIEdgeInsets = UIEdgeInsets(top: 19, left: 16, bottom: 26, right: 16)
     
     final let bestProductCellHeight: CGFloat = 258
@@ -242,23 +244,23 @@ extension ProductsViewController {
             bottomNavigationView.addSubview($0)
         }
         
-        [bannerImageContainerView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView, bestProductsHeaderView, bestProductsCollectionView].forEach {
+        [bannerImageContainerView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView, bestProductsHeaderView, bestProductsCollectionView, temporaryFooter].forEach {
             productsScrollView.addSubview($0)
         }
         
         bannerImageContainerView.addSubview(bannerImageView)
         
-        [recommendedProductsLabel, seeMoreRecommendedProductsButton, seeMoreRecommendedProductsImageContainerView].forEach {
+        [recommendedProductsLabel, goToRecommendedProductsPageButton, goToRecommendedProductsPageImageContainerView].forEach {
             recommendedProductsHeaderView.addSubview($0)
         }
         
-        seeMoreRecommendedProductsImageContainerView.addSubview(seeMoreRecommendedProductsImageView)
+        goToRecommendedProductsPageImageContainerView.addSubview(goToRecommendedProductsPageImageView)
         
-        [bestProductsLabel, seeMoreBestProductsButton, seeMoreBestProductsImageContainerView].forEach {
+        [bestProductsLabel, goToBestProductsPageButton, goToBestProductsPageImageContainerView].forEach {
             bestProductsHeaderView.addSubview($0)
         }
         
-        seeMoreBestProductsImageContainerView.addSubview(seeMoreBestProductsImageView)
+        goToBestProductsPageImageContainerView.addSubview(goToBestProductsPageImageView)
 
         
         // MARK: - NavigationView layout
@@ -402,21 +404,21 @@ extension ProductsViewController {
             $0.centerY.equalToSuperview()
         }
         
-        seeMoreRecommendedProductsButton.snp.makeConstraints {
+        goToRecommendedProductsPageButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
             $0.width.equalTo(22)
             $0.height.equalTo(22)
         }
         
-        seeMoreRecommendedProductsImageContainerView.snp.makeConstraints {
+        goToRecommendedProductsPageImageContainerView.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
             $0.width.equalTo(22)
             $0.height.equalTo(22)
         }
         
-        seeMoreRecommendedProductsImageView.snp.makeConstraints {
+        goToRecommendedProductsPageImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
@@ -445,28 +447,34 @@ extension ProductsViewController {
             $0.centerY.equalToSuperview()
         }
         
-        seeMoreBestProductsButton.snp.makeConstraints {
+        goToBestProductsPageButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
             $0.width.equalTo(22)
             $0.height.equalTo(22)
         }
         
-        seeMoreBestProductsImageContainerView.snp.makeConstraints {
+        goToBestProductsPageImageContainerView.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
             $0.width.equalTo(22)
             $0.height.equalTo(22)
         }
         
-        seeMoreBestProductsImageView.snp.makeConstraints {
+        goToBestProductsPageImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
         bestProductsCollectionView.snp.makeConstraints {
             $0.top.equalTo(self.bestProductsHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(bestProductCellHeight + bestProductInset.top + bestProductInset.bottom)
+            $0.height.equalTo(calculateBestProductsCollectionViewHeight())
+        }
+        
+        temporaryFooter.snp.makeConstraints {
+            $0.top.equalTo(self.bestProductsCollectionView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-50)
         }
     }
     
@@ -478,15 +486,20 @@ extension ProductsViewController {
         alarmImageView.image = UIImage(named: "tmon_btn_alarm")
         cartImageView.image = UIImage(named: "tmon_btn_shopping")
         bannerImageView.image = UIImage(named: "food_img_ad")
-        seeMoreRecommendedProductsImageView.image = UIImage(named: "tmon_btn_more")
-        seeMoreBestProductsImageView.image = UIImage(named: "tmon_btn_more")
+        goToRecommendedProductsPageImageView.image = UIImage(named: "tmon_btn_more")
+        goToBestProductsPageImageView.image = UIImage(named: "tmon_btn_more")
     }
     
     private func register() {
         recommendedProductsCollectionView.register(RecommendedProductsCollectionViewCell.self, forCellWithReuseIdentifier: RecommendedProductsCollectionViewCell.identifier)
         bestProductsCollectionView.register(BestProductsCollectionViewCell.self, forCellWithReuseIdentifier: BestProductsCollectionViewCell.identifier)
     }
-
+    
+    private func calculateBestProductsCollectionViewHeight() -> CGFloat {
+        let count = CGFloat(bestProductsList.count)
+        let heightCount = count / 2 + count.truncatingRemainder(dividingBy: 2)
+        return (heightCount * bestProductCellHeight) + ((heightCount - 1) * bestProductLineSpacing) + bestProductInset.top + bestProductInset.bottom
+    }
 }
 
 
@@ -494,15 +507,43 @@ extension ProductsViewController {
 
 extension ProductsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 134, height: 205)
+        if (collectionView == recommendedProductsCollectionView) {
+            return CGSize(width: 134, height: 205)
+        } else if (collectionView == bestProductsCollectionView) {
+            let screenWidth = UIScreen.main.bounds.width
+            let doubleCellWidth = screenWidth - bestProductInset.left - bestProductInset.right - bestProductInterItemSpacing
+            return CGSize(width: doubleCellWidth / 2, height: 258)
+        } else {
+            return CGSize(width: 100, height: 100)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if (collectionView == recommendedProductsCollectionView) {
+            return recommendedProductLineSpacing
+        } else if (collectionView == bestProductsCollectionView) {
+            return bestProductLineSpacing
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return recommendedProductInterItemSpacing
+        if (collectionView == bestProductsCollectionView) {
+            return bestProductInterItemSpacing
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return recommendedProductInset
+        if (collectionView == recommendedProductsCollectionView) {
+            return recommendedProductInset
+        } else if (collectionView == bestProductsCollectionView) {
+            return bestProductInset
+        } else {
+            return UIEdgeInsets()
+        }
     }
 }
 
@@ -511,14 +552,27 @@ extension ProductsViewController: UICollectionViewDelegateFlowLayout {
 
 extension ProductsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recommendedProductsList.count
+        if (collectionView == recommendedProductsCollectionView) {
+            return recommendedProductsList.count
+        } else if (collectionView == bestProductsCollectionView) {
+            return bestProductsList.count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let recommendedProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendedProductsCollectionViewCell", for: indexPath)
-                as? RecommendedProductsCollectionViewCell else { return UICollectionViewCell() }
-        recommendedProductCell.dataBind(model: recommendedProductsList[indexPath.item])
-        return recommendedProductCell
+        if (collectionView == recommendedProductsCollectionView) {
+            guard let recommendedProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendedProductsCollectionViewCell", for: indexPath)
+                    as? RecommendedProductsCollectionViewCell else { return UICollectionViewCell() }
+            recommendedProductCell.dataBind(model: recommendedProductsList[indexPath.item])
+            return recommendedProductCell
+        } else if (collectionView == bestProductsCollectionView) {
+            guard let bestProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestProductsCollectionViewCell", for: indexPath) as? BestProductsCollectionViewCell else { return UICollectionViewCell() }
+            bestProductCell.dataBind(model: bestProductsList[indexPath.item])
+            return bestProductCell
+        } else {
+            return UICollectionViewCell()
+        }
     }
-    
 }
