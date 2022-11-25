@@ -104,6 +104,8 @@ class ProductsViewController: UIViewController {
         return scrollView
     }()
     
+    private let bannerImageContainer = UIView()
+    
     private let bannerImageView = UIImageView()
     
     private let recommendedProductsHeaderView = UIView()
@@ -192,9 +194,11 @@ extension ProductsViewController {
             bottomNavigationView.addSubview($0)
         }
         
-        [bannerImageView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView].forEach {
+        [bannerImageContainer, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView].forEach {
             productsScrollView.addSubview($0)
         }
+        
+        bannerImageContainer.addSubview(bannerImageView)
         
         [recommendedProductsLabel, seeMoreRecommendedProductsButton, seeMoreImageView].forEach {
             recommendedProductsHeaderView.addSubview($0)
@@ -305,11 +309,15 @@ extension ProductsViewController {
             $0.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)
         }
         
-        bannerImageView.snp.makeConstraints {
+        bannerImageContainer.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             // width 안줘도 되어야 하는데... 왜 안되지?
             $0.width.equalTo(394)
             $0.height.equalTo(116)
+        }
+        
+        bannerImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         // MARK: - RecommendedProductsView layout
@@ -350,6 +358,10 @@ extension ProductsViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(8)
         }
+        
+        // MARK: - BestProductsView Layout
+        
+        
         
     }
     
