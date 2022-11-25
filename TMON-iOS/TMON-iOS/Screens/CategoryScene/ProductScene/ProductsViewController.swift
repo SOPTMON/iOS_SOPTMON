@@ -171,6 +171,23 @@ class ProductsViewController: UIViewController {
         return collectionView
     }()
     
+    private let seeMoreBestProductsButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("베스트 상품 더보기 ", for: .normal)
+        button.setTitleColor(.grayColor2, for: .normal)
+        button.titleLabel?.font =  UIFont.font(.suitRegular, ofSize: 14)
+        /*
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light)
+        let image = UIImage(systemName: "tmon_btn_down", withConfiguration: imageConfig)
+        button.setImage(image, for: .normal)
+        button.semanticContentAttribute = .forceRightToLeft
+        */
+        button.layer.cornerRadius = 20
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.grayColor2.cgColor
+        return button
+    }()
+    
     private let temporaryFooter = UIView()
     
     
@@ -244,7 +261,7 @@ extension ProductsViewController {
             bottomNavigationView.addSubview($0)
         }
         
-        [bannerImageContainerView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView, bestProductsHeaderView, bestProductsCollectionView, temporaryFooter].forEach {
+        [bannerImageContainerView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView, bestProductsHeaderView, bestProductsCollectionView, seeMoreBestProductsButton, temporaryFooter].forEach {
             productsScrollView.addSubview($0)
         }
         
@@ -471,8 +488,15 @@ extension ProductsViewController {
             $0.height.equalTo(calculateBestProductsCollectionViewHeight())
         }
         
-        temporaryFooter.snp.makeConstraints {
+        seeMoreBestProductsButton.snp.makeConstraints {
             $0.top.equalTo(self.bestProductsCollectionView.snp.bottom)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(156)
+            $0.height.equalTo(40)
+        }
+        
+        temporaryFooter.snp.makeConstraints {
+            $0.top.equalTo(self.seeMoreBestProductsButton.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-50)
         }
