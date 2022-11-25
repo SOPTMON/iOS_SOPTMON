@@ -157,6 +157,20 @@ class ProductsViewController: UIViewController {
     private let seeMoreBestProductsImageContainerView = UIView()
     private let seeMoreBestProductsImageView = UIImageView()
     
+    private lazy var bestProductsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isScrollEnabled = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        return collectionView
+    }()
+    
     
     // MARK: - Variables
     
@@ -164,6 +178,13 @@ class ProductsViewController: UIViewController {
         RecommendedProductModel(productImage: "food_img_macaroon", productName: "[스낵위크]롯데제과 마카롱 / 60%할인",  productPrice: "19,900~"),
         RecommendedProductModel(productImage: "food_img_candy", productName: "[스낵위크] 롯데제과 캔디 묶음 상품 / 40%할인", productPrice: "7,000원~"),
         RecommendedProductModel(productImage: "food_img_chocolate", productName: "[스낵위크] 롯데제과 수제 초콜릿 / 40%할인", productPrice: "26,400원~")
+    ]
+    
+    var bestProductsList: [BestProductModel] = [
+        BestProductModel(productRanking: "01", productImage: "food_img_apple", productName: "산지 직송 안동 햇사과 5kg", productPrice: "24,900원"),
+        BestProductModel(productRanking: "02", productImage: "food_img_onion", productName: "국내산 무안 자색양파 미니 5kg", productPrice: "24% 7,900원"),
+        BestProductModel(productRanking: "03", productImage: "food_img_chestnut", productName: "충남 공주 정안 옥광밤 4kg", productPrice: "48,900원"),
+        BestProductModel(productRanking: "04", productImage: "food_img_lemon", productName: "무농약 제주 청레몬 450g (3...", productPrice: "10,900원")
     ]
     
     
