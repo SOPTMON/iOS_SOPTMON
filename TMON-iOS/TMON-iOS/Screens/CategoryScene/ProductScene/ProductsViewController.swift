@@ -43,6 +43,8 @@ class ProductsViewController: UIViewController {
     
     private let alarmButton = UIButton()
     
+    private let alarmImageContainer = UIView()
+    
     private let alarmImageView = UIImageView()
     
     private let cartButton = UIButton()
@@ -188,11 +190,12 @@ extension ProductsViewController {
             navigationView.addSubview($0)
         }
         
-        [backButton, backImageContainer, foodLabel, alarmButton, alarmImageView, cartButton, cartImageView].forEach {
+        [backButton, backImageContainer, foodLabel, alarmButton, alarmImageContainer, cartButton, cartImageView].forEach {
             topNavigationView.addSubview($0)
         }
         
         backImageContainer.addSubview(backImageView)
+        alarmImageContainer.addSubview(alarmImageView)
         
         [entireFoodLabel, entireFoodLabelUnderlineView, freshFoodLabel, processedFoodLabel, healthAndDietFoodLabel, coffeeAndDrinksFoodLabel].forEach {
             bottomNavigationView.addSubview($0)
@@ -250,11 +253,15 @@ extension ProductsViewController {
             $0.height.equalTo(28)
         }
         
-        alarmImageView.snp.makeConstraints {
+        alarmImageContainer.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
             $0.trailing.equalTo(self.cartButton.snp.leading)
             $0.width.equalTo(28)
             $0.height.equalTo(28)
+        }
+        
+        alarmImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         cartButton.snp.makeConstraints {
