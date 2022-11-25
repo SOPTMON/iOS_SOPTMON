@@ -213,7 +213,7 @@ extension ProductsViewController {
             bottomNavigationView.addSubview($0)
         }
         
-        [bannerImageContainerView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView].forEach {
+        [bannerImageContainerView, recommendedProductsHeaderView, recommendedProductsCollectionView, borderView, bestProductsHeaderView].forEach {
             productsScrollView.addSubview($0)
         }
         
@@ -225,7 +225,7 @@ extension ProductsViewController {
         
         seeMoreRecommendedProductsImageContainerView.addSubview(seeMoreRecommendedProductsImageView)
         
-        [bestProductsLabel, seeMoreBestProductsButton, seeMoreBestProductsImageView].forEach {
+        [bestProductsLabel, seeMoreBestProductsButton, seeMoreBestProductsImageContainerView].forEach {
             bestProductsHeaderView.addSubview($0)
         }
         
@@ -379,11 +379,15 @@ extension ProductsViewController {
             $0.height.equalTo(22)
         }
         
-        seeMoreRecommendedProductsImageView.snp.makeConstraints {
-            $0.top.equalTo(self.bannerImageView.snp.bottom).offset(31)
+        seeMoreRecommendedProductsImageContainerView.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
             $0.width.equalTo(22)
             $0.height.equalTo(22)
+        }
+        
+        seeMoreRecommendedProductsImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         recommendedProductsCollectionView.snp.makeConstraints {
@@ -400,7 +404,34 @@ extension ProductsViewController {
         
         // MARK: - BestProductsView Layout
         
+        bestProductsHeaderView.snp.makeConstraints {
+            $0.top.equalTo(self.borderView.snp.bottom).offset(31)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(22)
+        }
         
+        bestProductsLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.centerY.equalToSuperview()
+        }
+        
+        seeMoreBestProductsButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
+            $0.width.equalTo(22)
+            $0.height.equalTo(22)
+        }
+        
+        seeMoreBestProductsImageContainerView.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
+            $0.width.equalTo(22)
+            $0.height.equalTo(22)
+        }
+        
+        seeMoreBestProductsImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
     }
     
@@ -413,6 +444,7 @@ extension ProductsViewController {
         cartImageView.image = UIImage(named: "tmon_btn_shopping")
         bannerImageView.image = UIImage(named: "food_img_ad")
         seeMoreRecommendedProductsImageView.image = UIImage(named: "tmon_btn_more")
+        seeMoreBestProductsImageView.image = UIImage(named: "tmon_btn_more")
     }
     
     private func register() {
