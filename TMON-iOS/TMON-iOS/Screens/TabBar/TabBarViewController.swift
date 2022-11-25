@@ -32,7 +32,7 @@ class TabBarController: UITabBarController {
                                                    selectedImage: ImageLiterals.tabBarHomeSelected,
                                                    rootViewController: homeVC)
         
-        let categoryVC = ProductsViewController()
+        let categoryVC = CategoryMainViewController()
         let categoryNVC = templateNavigationController(unselectedImage: ImageLiterals.tabBarCategoryDefault,
                                                        selectedImage: ImageLiterals.tabBarCategorySelected,
                                                      rootViewController: categoryVC)
